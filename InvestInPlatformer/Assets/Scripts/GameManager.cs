@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     bool monsterCoroutine = false;
 
+    [SerializeField] AudioClip[] clips;
+    [SerializeField] AudioSource source;
+
 
     // Start is called before the first frame update
     void Start()
@@ -102,9 +105,22 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        PlaySound("dead");
         gameOverScreen.SetActive(true);
     }
 
+
+    public void PlaySound(string whichSound)
+    {
+        if(whichSound == "boing")
+        {
+            source.PlayOneShot(clips[0]);
+        }
+        else if(whichSound == "dead")
+        {
+            source.PlayOneShot(clips[1]);
+        }
+    }
 
   
 }
